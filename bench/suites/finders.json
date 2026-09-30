@@ -1,0 +1,246 @@
+{
+  "description": "Real product-finder and listing pages: the scraper's intended input.",
+  "provenance": "Seeds from the user (WAGO, Pedrollo) and maxun-studio history; the rest found and verified live on 2026-09-30 by three scout subagents from Jev-free screenshots (artifacts/candidates). Labels from those screenshots; not yet human-reviewed. Pagination \"unknown\" means not visible in the top 2400px.",
+  "sites": [
+    {
+      "id": "deublin-selektor",
+      "company": "Deublin",
+      "url": "https://www.deublin.com/de/produkt-selektor",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [
+          "finder_needs_input"
+        ],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "parametric_table",
+        "pagination": "numbered",
+        "visible_total": "77 pages",
+        "language": "de"
+      }
+    },
+    {
+      "id": "wago-search-221",
+      "company": "WAGO",
+      "url": "https://www.wago.com/global/search?text=221%20ex",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "search_results",
+        "pagination": "unknown",
+        "visible_total": "49 results (31 products)",
+        "language": "en",
+        "source": "user"
+      }
+    },
+    {
+      "id": "posital-inclinometers",
+      "company": "POSITAL",
+      "url": "https://www.posital.com/en/products/inclinometers/search",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "parametric_table",
+        "pagination": "unknown",
+        "visible_total": "1728 found",
+        "language": "en"
+      }
+    },
+    {
+      "id": "ifm-inductive",
+      "company": "ifm",
+      "url": "https://www.ifm.com/de/en/category/200_010_010",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "parametric_table",
+        "pagination": "numbered",
+        "visible_total": "1655 products, 34 pages",
+        "language": "en",
+        "notes": "listing sits below sub-category tiles"
+      }
+    },
+    {
+      "id": "ifm-search-de",
+      "company": "ifm",
+      "url": "https://www.ifm.com/de/de/search?q=inductive%20sensor",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "search_results",
+        "pagination": "numbered",
+        "visible_total": "10000 (capped), 834 pages",
+        "language": "de"
+      }
+    },
+    {
+      "id": "pepperl-inductive-de",
+      "company": "Pepperl+Fuchs",
+      "url": "https://www.pepperl-fuchs.com/de-de/products-gp25581?class=30734",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "card_listing",
+        "pagination": "unknown",
+        "visible_total": "2960",
+        "language": "de"
+      }
+    },
+    {
+      "id": "pedrollo-peripheral-de",
+      "company": "Pedrollo",
+      "url": "https://www.pedrollo.com/de/categoria-prodotto/trocken-aufgestellte-pumpen/peripheralrad-pumpen/",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "family_cards",
+        "pagination": "none",
+        "visible_total": null,
+        "language": "de",
+        "source": "user"
+      }
+    },
+    {
+      "id": "novotechnik-linear",
+      "company": "Novotechnik",
+      "url": "https://www.novotechnik.de/en/product-category/position-sensors/linear-position-transducers/",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "family_cards",
+        "pagination": "unknown",
+        "visible_total": null,
+        "language": "en"
+      }
+    },
+    {
+      "id": "elesa-clamping-knobs",
+      "company": "Elesa+Ganter",
+      "url": "https://www.elesa-ganter.com/en/www/clamping-knobs--1",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "family_cards",
+        "pagination": "unknown",
+        "visible_total": "130 Products",
+        "language": "en"
+      }
+    },
+    {
+      "id": "wika-pressure-gauges",
+      "company": "WIKA",
+      "url": "https://www.wika.com/en-en/pressure_gauges.WIKA",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "family_cards",
+        "pagination": "load_more",
+        "visible_total": "83 Results",
+        "language": "en"
+      }
+    },
+    {
+      "id": "vega-radar-de",
+      "company": "VEGA",
+      "url": "https://www.vega.com/de-de/produkte/produktkatalog/fuellstand/radar",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "family_cards",
+        "pagination": "none",
+        "visible_total": null,
+        "language": "de"
+      }
+    },
+    {
+      "id": "kuebler-encoder-finder",
+      "company": "K\u00fcbler",
+      "url": "https://www.kuebler.com/en/products/measurement/encoders/product-finder",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [
+          "product_listing"
+        ],
+        "main_items": "product_family",
+        "acceptable_items": [],
+        "archetype": "finder_rows",
+        "pagination": "unknown",
+        "visible_total": "Encoders found: 181",
+        "language": "en"
+      }
+    },
+    {
+      "id": "donaldson-de",
+      "company": "Donaldson",
+      "url": "https://www.donaldson.com/de/products/",
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [
+          "category_hub"
+        ],
+        "main_items": "product_family",
+        "acceptable_items": [
+          "product_category"
+        ],
+        "archetype": "family_cards",
+        "pagination": "unknown",
+        "visible_total": "Zeige 1 bis 20 von 165 Produkte",
+        "language": "de"
+      }
+    },
+    {
+      "id": "kennametal-cutoff",
+      "company": "Kennametal",
+      "url": "https://www.kennametal.com/dk/en/products/metalworking-tools/turning/grooving-and-cut-off/cut-off.html",
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "acceptable_items": [
+          "product_family"
+        ],
+        "archetype": "mixed",
+        "pagination": "unknown",
+        "visible_total": "2135 Products",
+        "language": "en"
+      }
+    },
+    {
+      "id": "endress-product-guide",
+      "company": "Endress+Hauser",
+      "url": "https://www.ca.endress.com/en/field-instruments-overview/product-guide",
+      "label": {
+        "page_kind": "finder_needs_input",
+        "acceptable_alternates": [],
+        "main_items": "none",
+        "acceptable_items": [],
+        "archetype": "finder_needs_input",
+        "pagination": "none",
+        "visible_total": null,
+        "language": "en"
+      }
+    }
+  ]
+}

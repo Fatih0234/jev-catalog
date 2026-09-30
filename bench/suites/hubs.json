@@ -1,0 +1,371 @@
+{
+  "description": "Top-level catalogue pages of 20 manufacturers (maxun-studio live-sites corpus). Mostly category hubs.",
+  "provenance": "Labeled 2026-09-30 by four independent subagents from Jev-free screenshots (artifacts/shots, top 2400px after load). Not yet human-reviewed.",
+  "sites": [
+    {
+      "id": "mfg-01-deublin",
+      "company": "Deublin",
+      "url": "https://www.deublin.com/de/produkt-selektor",
+      "edge_cases": [
+        "initial response contains taxonomy but not product results"
+      ],
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [
+          "finder_needs_input"
+        ],
+        "main_items": "individual_product",
+        "gate": "cookie consent with Settings / Decline all / Accept all",
+        "visible_total": "page 1 of 77",
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-02-hager",
+      "company": "Hager",
+      "url": "https://hager.com/de/katalog/",
+      "edge_cases": [
+        "products, category content, prices, filters and promoted products can be mixed"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "cookie banner + country bar",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-03-ifm",
+      "company": "ifm",
+      "url": "https://www.ifm.com/de/en/category",
+      "edge_cases": [
+        "category-first page may be mistaken for a product listing"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "Usercentrics consent modal + country bar",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-04-balluff",
+      "company": "Balluff",
+      "url": "https://www.balluff.com/en-de/products",
+      "edge_cases": [
+        "deep nested category hierarchy before individual products"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "cookie settings banner + country bar",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-05-phoenix-contact",
+      "company": "Phoenix Contact",
+      "url": "https://www.phoenixcontact.com/en-us/products",
+      "edge_cases": [
+        "product families, configurators and individual products coexist"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "not_catalogue"
+        ],
+        "main_items": "product_category",
+        "gate": "none blocking (info bar)",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-06-festo",
+      "company": "Festo",
+      "url": "https://www.festo.com/de/en/c/products-id_pim1",
+      "edge_cases": [
+        "valid catalogue URL looks empty browserlessly"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "cookie consent with Settings / Accept only necessary / Accept all cookies",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-07-wago",
+      "company": "WAGO",
+      "url": "https://www.wago.com/global/products",
+      "edge_cases": [
+        "JSON-like search/navigation data mixed with catalogue content"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "cookie consent (Usercentrics privacy settings) with Save Settings / Deny All / Accept All",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-09-te-connectivity",
+      "company": "TE Connectivity",
+      "url": "https://www.te.com/en/products/connectors/terminal-blocks-strips.html",
+      "edge_cases": [
+        "large product groups and counts precede individual items"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "product_listing",
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie preferences dialog + feedback survey popup",
+        "visible_total": "3,823 (View All Terminal Blocks & Strips)",
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-10-siemens-industry-mall",
+      "company": "Siemens Industry Mall",
+      "url": "https://mall.industry.siemens.com/mall/catalog/products/10177053?tree=CatalogTree",
+      "edge_cases": [
+        "category tree, technical rows and API results coexist"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "not_catalogue"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie consent with Reject Cookies / Accept All Cookies",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-11-endress-hauser",
+      "company": "Endress+Hauser",
+      "url": "https://www.ca.endress.com/en/field-instruments-overview/product-guide",
+      "edge_cases": [
+        "guided selection by measurement characteristics rather than visual cards"
+      ],
+      "label": {
+        "page_kind": "finder_needs_input",
+        "acceptable_alternates": [],
+        "main_items": "none",
+        "gate": "cookie consent with Customize / Accept only essential / Accept all",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-19-timken",
+      "company": "Timken",
+      "url": "https://www.timken.com/product-category/roller-bearings/",
+      "edge_cases": [
+        "families rather than purchasable SKUs dominate initial listing"
+      ],
+      "label": {
+        "page_kind": "family_listing",
+        "acceptable_alternates": [
+          "category_hub"
+        ],
+        "main_items": "product_family",
+        "gate": "non-blocking cookie bar",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-22-kennametal",
+      "company": "Kennametal",
+      "url": "https://www.kennametal.com/dk/en/products/metalworking-tools/turning/grooving-and-cut-off/cut-off.html",
+      "edge_cases": [
+        "family cards carry result counts rather than one card per SKU"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie consent with Accept All Cookies / Manage Preferences",
+        "visible_total": "2135 Products",
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-23-walter-tools",
+      "company": "Walter Tools",
+      "url": "https://www.walter-tools.com/en-us/products/turning/iso-turning",
+      "edge_cases": [
+        "legitimate category URL can expose a no-products-match state"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie consent with Reject All / Accept All Cookies / Cookie Settings",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-25-norelem",
+      "company": "norelem",
+      "url": "https://www.norelem.de/en/product-overview",
+      "edge_cases": [
+        "thousands of standard components in deep numbered categories"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "Cookiebot consent with Customize / Allow all",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-26-misumi",
+      "company": "MISUMI",
+      "url": "https://us.misumi-ec.com/product/",
+      "edge_cases": [
+        "one product family generates many part-number variants and technical rows"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "gate": "none (dismissible region banner)",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-27-elesa-ganter",
+      "company": "Elesa+Ganter",
+      "url": "https://www.elesa-ganter.com/en/www/products",
+      "edge_cases": [
+        "product results, quick order, country selection and ecommerce elements are mixed"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [],
+        "main_items": "product_category",
+        "gate": "country selector modal",
+        "visible_total": null,
+        "confidence": "high",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-29-smc",
+      "company": "SMC",
+      "url": "https://www.smcworld.com/en/s.do?kw=A&off=0",
+      "edge_cases": [
+        "search URL encodes query mode and result offset"
+      ],
+      "label": {
+        "page_kind": "not_catalogue",
+        "acceptable_alternates": [
+          "error_or_blocked"
+        ],
+        "main_items": "none",
+        "gate": "none",
+        "visible_total": "225Results",
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-30-bosch-rexroth",
+      "company": "Bosch Rexroth",
+      "url": "https://www.boschrexroth.com/en/nz/products/",
+      "edge_cases": [
+        "Product Families and Products tabs create different entity granularities"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "not_catalogue"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie consent with Settings / Decline all / Accept all",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-32-donaldson",
+      "company": "Donaldson",
+      "url": "https://www.donaldson.com/de/products/",
+      "edge_cases": [
+        "broad taxonomy can dominate repetition scoring"
+      ],
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": [
+          "family_listing"
+        ],
+        "main_items": "product_category",
+        "gate": "cookie consent (German) Alle ablehnen / Alle akzeptieren / Verwalten",
+        "visible_total": "Zeige 1 bis 20 von 165 Produkte",
+        "confidence": "low",
+        "acceptable_items": []
+      }
+    },
+    {
+      "id": "mfg-33-testo",
+      "company": "Testo",
+      "url": "https://www.testo.com/en-US/products",
+      "edge_cases": [
+        "instruments, probes, software and kits may use different field schemas"
+      ],
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [
+          "category_hub"
+        ],
+        "main_items": "individual_product",
+        "gate": "none",
+        "visible_total": null,
+        "confidence": "medium",
+        "acceptable_items": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "jev-catalog",
+  "version": "1.0.0",
+  "description": "Headless catalogue scraper where Jev makes the decisions and code does the reading.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test",
+    "recon": "tsx src/cli.ts recon",
+    "shoot": "tsx bench/shoot.ts",
+    "bench:recon": "tsx bench/recon.ts",
+    "crawl": "tsx src/cli.ts crawl"
+  },
+  "license": "UNLICENSED",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0",
+    "playwright": "^1.63.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
