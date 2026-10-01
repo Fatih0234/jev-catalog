@@ -5,6 +5,7 @@ import { open, settle } from './browser.js';
 import type { NextAction } from './classify.js';
 import { siteKey } from './gate.js';
 import type { Judge } from './jev.js';
+import { extractListing, RecipeMemo } from './listing.js';
 
 export interface CrawlOptions {
   /** Hard cap on pages judged (probe pages not counted). */
@@ -13,7 +14,20 @@ export interface CrawlOptions {
   /** Children enqueued per expanded page; the rest are recorded as truncated. */
   maxChildren?: number;
   outDir?: string;
+  /** Read rows from every product list reached (first page only until pagination exists). Default true. */
+  extract?: boolean;
   log?: (line: string) => void;
+}
+
+export interface NodeListing {
+  rows: number;
+  identity?: string;
+  identity_unique_pct?: number;
+  fields: string[];
+  advertised_total?: number;
+  advertised_pages?: number;
+  reused_recipe: boolean;
+  rows_file?: string;
 }
 
 export interface CrawlNode {
@@ -35,6 +49,8 @@ export interface CrawlNode {
   children_enqueued?: number;
   children_truncated?: number;
   sample_items?: string[];
+  listing?: NodeListing;
+  listing_error?: string;
   error?: string;
 }
 
@@ -47,6 +63,9 @@ export interface CrawlResult {
   series_pages: CrawlNode[];
   needs_input: CrawlNode[];
   stopped: CrawlNode[];
+  /** Rows read from product lists (first pages) and the totals those lists advertise. */
+  rows_extracted: number;
+  rows_advertised: number;
   unvisited: number;
   jev_calls: number;
   jev_input_tokens: number;
@@ -103,6 +122,7 @@ export async function crawl(seed: string, judge: Judge, opts: CrawlOptions = {})
   const session = await open(seed);
   const seedSite = siteKey(session.page.url());
   const memo = new ProbeMemo();
+  const recipes = new RecipeMemo();
   const nodes: CrawlNode[] = [];
   const queue: Pending[] = [{ url: normalizeUrl(seed), depth: 0, via: 'seed' }];
   const visited = new Set<string>();
@@ -136,6 +156,30 @@ export async function crawl(seed: string, judge: Judge, opts: CrawlOptions = {})
           view_all: a.view_all,
           sample_items: a.main_group?.samples.slice(0, 2).map((s) => s.slice(0, 90)),
         });
+
+        if (a.next === 'extract' && a.main_group && !a.main_group.id.startsWith('f') && opts.extract !== false) {
+          try {
+            const l = await extractListing(session.page, judge, a.main_group.id, { title: a.title, heading: a.main_group.heading }, recipes);
+            let rows_file: string | undefined;
+            if (opts.outDir) {
+              mkdirSync(join(opts.outDir, 'lists'), { recursive: true });
+              rows_file = join('lists', `${node.id}.json`);
+              writeFileSync(join(opts.outDir, rows_file), JSON.stringify({ url: a.url, recipe: l.recipe, check: l.check, rows: l.rows }, null, 2));
+            }
+            node.listing = {
+              rows: l.check.rows,
+              identity: l.check.identity,
+              identity_unique_pct: l.check.identity_unique_pct,
+              fields: l.recipe.fields.map((f) => f.name),
+              advertised_total: l.check.advertised_total,
+              advertised_pages: l.check.advertised_pages,
+              reused_recipe: l.reused_recipe,
+              rows_file,
+            };
+          } catch (e) {
+            node.listing_error = String(e).slice(0, 200);
+          }
+        }
 
         const enqueue = (urls: string[], via: Pending['via']) => {
           const fresh = urls.filter((u) => !visited.has(u) && !queue.some((q) => q.url === u));
@@ -181,6 +225,8 @@ export async function crawl(seed: string, judge: Judge, opts: CrawlOptions = {})
     series_pages: by('series_page'),
     needs_input: by('needs_input'),
     stopped: nodes.filter((x) => x.next === 'stop' || x.error),
+    rows_extracted: nodes.reduce((n, x) => n + (x.listing?.rows ?? 0), 0),
+    rows_advertised: nodes.reduce((n, x) => n + (x.listing?.advertised_total ?? 0), 0),
     unvisited: queue.length,
     jev_calls: calls.length,
     jev_input_tokens: calls.reduce((n, c) => n + c.input_tokens, 0),
@@ -200,6 +246,7 @@ export function renderTree(r: CrawlResult): string {
     `# Crawl of ${r.seed}`,
     '',
     `Pages judged: ${r.nodes.length} · product lists: ${r.leaf_lists.length} · product pages: ${r.product_pages.length} · configurable families: ${r.configurable_families.length} · series pages (variants not listed): ${r.series_pages.length} · needs input: ${r.needs_input.length} · stopped/errors: ${r.stopped.length} · still queued: ${r.unvisited}`,
+    `Rows read (first pages): ${r.rows_extracted}${r.rows_advertised ? ` · advertised by those lists: ${r.rows_advertised}` : ''}`,
     `Jev calls: ${r.jev_calls} · input tokens: ${r.jev_input_tokens} · time: ${Math.round(r.elapsed_ms / 1000)} s`,
     '',
     '```',
@@ -211,7 +258,9 @@ export function renderTree(r: CrawlResult): string {
       const tag = n.error ? 'ERROR' : n.next;
       const via = n.via === 'seed' || n.via === 'item' ? '' : ` (${n.via})`;
       const items = n.item_count && n.main_items ? ` ${n.item_count}× ${n.main_items}` : '';
-      const extra = n.children_truncated ? ` +${n.children_truncated} not crawled` : '';
+      const l = n.listing;
+      const rows = l ? ` [${l.rows} rows${l.advertised_total ? ` of ${l.advertised_total}` : ''}, id ${l.identity ?? 'none'}${l.reused_recipe ? ', recipe reused' : ''}]` : n.listing_error ? ' [listing error]' : '';
+      const extra = (n.children_truncated ? ` +${n.children_truncated} not crawled` : '') + rows;
       lines.push(`${indent}${tag}${via}${items}  ${n.title?.slice(0, 60) ?? ''}  ${n.final_url ?? n.url}${extra}`);
       walk(n.id, indent + '  ');
     }

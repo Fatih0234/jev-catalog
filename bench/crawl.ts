@@ -21,7 +21,7 @@ for (const seed of SEEDS.filter((s) => !only || s.id === only)) {
   const judge = createJudge();
   try {
     const r = await crawl(seed.url, judge, { maxPages, outDir: `${runDir}/${seed.id}`, log: (l) => console.log(`[${seed.id}] ${l}`) });
-    rows.push(`| ${seed.id} | ${r.nodes.length} | ${r.leaf_lists.length} | ${r.product_pages.length} | ${r.configurable_families.length} | ${r.series_pages.length} | ${r.needs_input.length} | ${r.stopped.length} | ${r.unvisited} | ${r.jev_calls} | ${Math.round(r.elapsed_ms / 1000)} s | ${seed.expect} |`);
+    rows.push(`| ${seed.id} | ${r.nodes.length} | ${r.leaf_lists.length} | ${r.product_pages.length} | ${r.configurable_families.length} | ${r.series_pages.length} | ${r.needs_input.length} | ${r.stopped.length} | ${r.unvisited} | ${r.rows_extracted} | ${r.jev_calls} | ${Math.round(r.elapsed_ms / 1000)} s | ${seed.expect} |`);
     writeFileSync(`${runDir}/${seed.id}.md`, renderTree(r));
   } catch (e) {
     rows.push(`| ${seed.id} | error: ${String(e).slice(0, 80)} |`);
@@ -30,8 +30,8 @@ for (const seed of SEEDS.filter((s) => !only || s.id === only)) {
 const md = [
   `# Crawl bench (max ${maxPages} pages per seed)`,
   '',
-  '| seed | pages | product lists | product pages | configurable families | series pages | needs input | stop/error | queued | Jev calls | time | expectation |',
-  '|---|---|---|---|---|---|---|---|---|---|---|---|',
+  '| seed | pages | product lists | product pages | configurable families | series pages | needs input | stop/error | queued | rows read | Jev calls | time | expectation |',
+  '|---|---|---|---|---|---|---|---|---|---|---|---|---|',
   ...rows,
 ].join('\n');
 writeFileSync(`${runDir}/summary.md`, md + '\n');

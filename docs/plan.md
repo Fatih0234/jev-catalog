@@ -21,13 +21,23 @@ Compile once, execute deterministically, and let Jev check the result at decisio
    - `needs_input`: a finder that wants a selection first.
    - `stop`: nothing to do.
    Pages about one product or series never expand, so related-product carousels cannot pull the crawl sideways. A "view all" link is tried first when Jev finds one, with the children as fallback.
-3. **Listing recipe.** For the main list: which text slots in a card are which fields, which ones are page chrome, the item link, the identity field, and the advertised total.
+3. **Listing recipe (built).** Steps:
+   - Code lines up the text positions of every row or card and finds labels: table headers (including DataTables' separate header table), header rows above div tables matched by column position, `dt`, "Label:" text, and constants followed by a value.
+   - Jev confirms each proposed label pair, then says per slot whether it is a name, order code, spec, price, category or chrome.
+   - Code names fields by the page's own label, picks the identity (order code, then name, then the item's own link) and checks that it is unique.
+   - Code collects count texts. Jev says what each one counts, and code picks the total and the page count.
+   - Rows from same-template lists on one page are merged by identity, which handles fixed-column clones.
+   - A recipe is reused on sibling pages only when it fits and the page has no column it has not judged.
 4. **Pagination.** Code collects the candidates: numbered pages, next buttons, load more, infinite scroll, page-size options and URL parameters. Jev picks one. Code verifies it by checking that new product identities appear.
 5. **Detail recipe.** Open three different items. Reveal tabs and accordions, then find and name the spec sections and align their keys across items.
 6. **Run.** Replay the recipes with Playwright. Jev checks page boundaries ("are there more products?"), value plausibility on samples, and zero-row pages.
 7. **Output.** JSONL or CSV, plus a completeness report comparing rows found with the advertised total, plus the recipe for reruns.
 
-## Known gaps after stage 2
+## Known gaps after stage 3
+
+- Only the first page of each list is read until stage 4 exists.
+- Unlabelled columns get role names such as `spec_1`.
+- A currency shown apart from its price ("116,23" and "EUR") becomes two fields.
 
 - Items that expand through buttons instead of links (Kennametal "View Categories") are not followed.
 - Large hubs need a larger page budget; breadth-first judges every category before descending.

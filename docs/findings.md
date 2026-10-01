@@ -44,6 +44,30 @@ What stage 2 taught us:
 11. **Page layout hides lists.** Header, content and newsletter sections look like a 3-item repeated group and swallowed the variant table and Hager's category tiles. Groups whose items differ wildly in size are now treated as layout. A nested group is kept when it has more items than the group around it, unless it is made of an item's own children (the cells of a table row).
 12. **An options configurator is not always a family.** WAGO product pages have a "Variant selection" switcher but already name one exact item number. The rule is: family when a configurator exists and no single exact article number is shown.
 
+## Stage 3: listing recipe (2026-10-01)
+
+Listing bench, first page of each list:
+
+| List | Rows | Identity | Advertised | Fields |
+| --- | --- | --- | --- | --- |
+| Deublin selector | 10 | Deublin Teilenummer | 77 pages | 7 labelled columns from a div-table header |
+| WAGO search | 20 | order code ("Item no. 221-412") | 31 products | name, description, spec text, PU (SPU) |
+| Posital inclinometers | 20 | PRODUCT | 1728 found | 7 labelled columns |
+| ifm inductive | 50 | order code | 1655, 34 pages | 6 labelled columns |
+| ifm search | 12 | order code | 10000, 834 pages | name, description, price |
+| Pepperl+Fuchs inductive | 49 | order code | 2960 | category, description, price |
+| Elesa VB.839-B | 42 | Code | none shown | 11 columns (D, d, L, d1, l2, h, C# [Nm], ...) |
+| Elesa VTT-SST-VD | 4 | Code | none shown | 9 columns |
+
+About 6 Jev calls per list including gates, classification and probes. In the Elesa crawl, 7 of 13 variant tables reused a recipe without a Jev call.
+
+What stage 3 taught us:
+
+13. **Totals need per-candidate questions.** Asked "which text states the total", Jev answered none on every page. Asked per text what it counts (products, search results, pages, other), it labels them well, and code picks. "1728 found" splits between product and result count, so code adds the two.
+14. **Code proposes, Jev confirms.** A text that repeats on every card before a varying value looks like a label, but on WAGO it is the series link and on Pepperl+Fuchs the product type. A literal Noul per proposed pair sorts them.
+15. **Page widgets distort tables.** DataTables adds a filter row with dropdowns listing every value, a separate header table, and left and right fixed-column clones. Header rows with inputs are skipped and rows are merged by identity.
+16. **Reusing recipes can lose columns silently.** A sibling family can have a column the first family lacked. Reuse now requires that every well-filled column was judged before.
+
 ## Open questions
 
 - **Hub pages that fail.** Balluff shows a Cloudflare check, Bosch Rexroth's products page is judged not a catalogue, and Testo's highlight tabs are judged categories.
