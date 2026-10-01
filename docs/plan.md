@@ -28,14 +28,23 @@ Compile once, execute deterministically, and let Jev check the result at decisio
    - Code collects count texts. Jev says what each one counts, and code picks the total and the page count.
    - Rows from same-template lists on one page are merged by identity, which handles fixed-column clones.
    - A recipe is reused on sibling pages only when it fits and the page has no column it has not judged.
-4. **Pagination.** Code collects the candidates: numbered pages, next buttons, load more, infinite scroll, page-size options and URL parameters. Jev picks one. Code verifies it by checking that new product identities appear.
+4. **Pagination (built).** How it works:
+   - Code collects controls near the list: numbered pages, next and previous arrows (including icon-only ones), load more, `rel=next` and page-size selects.
+   - Jev says what each control does, one literal question per control.
+   - Code tries mechanisms in a fixed order: a URL template fitted from numbered links or a next link, click next, load more, click the next number, then scrolling. The first one that brings unseen product identities wins.
+   - Code waits for the list to change, not for a fixed time. It stops on an empty or unchanged page, a missing or disabled control, the advertised total, or a page limit.
+   - It records HTTP 5xx pages and skips them when paging by URL.
+   - When the order shifts between loads (many repeats, total not reached), it makes further passes while they still add at least 1% of the total.
+   - It pauses 1 s between pages.
 5. **Detail recipe.** Open three different items. Reveal tabs and accordions, then find and name the spec sections and align their keys across items.
 6. **Run.** Replay the recipes with Playwright. Jev checks page boundaries ("are there more products?"), value plausibility on samples, and zero-row pages.
 7. **Output.** JSONL or CSV, plus a completeness report comparing rows found with the advertised total, plus the recipe for reruns.
 
-## Known gaps after stage 3
+## Known gaps after stage 4
 
-- Only the first page of each list is read until stage 4 exists.
+- Page-size options (ifm offers 125 per page) are collected but not used.
+- A list whose order shifts between loads (Posital) cannot be read completely by paging alone. Splitting it by a filter would be the next step.
+- A site that fails to serve a page in a click-driven list (Deublin page 22) ends the list there.
 - Unlabelled columns get role names such as `spec_1`.
 - A currency shown apart from its price ("116,23" and "EUR") becomes two fields.
 

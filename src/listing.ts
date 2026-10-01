@@ -26,11 +26,16 @@ export interface PageItems {
   item_signature: string;
   container_signature: string;
   containers: number;
+  /** Items on the page before slicing by `from`. */
+  total_items: number;
   items: RawItem[];
   count_texts: string[];
 }
 
-export async function readItems(page: Page, target: { group: string } | { itemSignature: string; containerSignature: string }): Promise<PageItems> {
+export async function readItems(
+  page: Page,
+  target: ({ group: string } | { itemSignature: string; containerSignature: string }) & { from?: number; skipCounts?: boolean },
+): Promise<PageItems> {
   return page.evaluate(`(${ITEMS_SRC})(${JSON.stringify(target)})`) as Promise<PageItems>;
 }
 

@@ -68,6 +68,29 @@ What stage 3 taught us:
 15. **Page widgets distort tables.** DataTables adds a filter row with dropdowns listing every value, a separate header table, and left and right fixed-column clones. Header rows with inputs are skipped and rows are merged by identity.
 16. **Reusing recipes can lose columns silently.** A sibling family can have a column the first family lacked. Reuse now requires that every well-filled column was judged before.
 
+## Stage 4: pagination (2026-10-01)
+
+Full runs, up to 150 pages per list, 1 s pause:
+
+| List | Mechanism | Rows | Completeness | Stop |
+| --- | --- | --- | --- | --- |
+| ifm inductive sensors | click next (icon only) | 1655 of 1655 | 100% | reached total, 34 pages, 62 s |
+| Pepperl+Fuchs inductive | load more | 2944 of 2960 | 99.5% | the button disappeared, 60 loads |
+| Posital inclinometers | URL `?page={v}`, zero-based | 1669 of 1728 | 96.6% | 3 passes over 87 pages |
+| WAGO search | click next (icon only) | 29 of 31 | 93.5% | page 2 really shows 9 products |
+| Deublin selector | click next | 210 | n/a | the site answers HTTP 500 for page 22 |
+
+Each list costs one Jev call for paging on top of the listing calls. Every list worked with the first mechanism tried.
+
+What stage 4 taught us:
+
+17. **Zero new products does not mean the end.** Posital's default order shifts between loads, so whole pages repeat earlier ones. The end is an empty or unchanged page or a missing control. With an advertised total, repeats before the expected last page are ignored.
+18. **Wait for the change, not for something new.** Waiting until an unseen product appears cost 12 s on every page of repeats (28 minutes for Posital). Waiting until the list differs from the previous page brought it to under 10 minutes.
+19. **Watch the network.** Deublin's empty page 22 was a server error, visible only as HTTP 500 responses. Paging now reports failed pages instead of a silent stop.
+20. **Paging fast gets you blocked.** After 34 ifm pages in a minute, ifm's firewall answered "Access Denied" for the next run. Paging now pauses 1 s between pages.
+21. **Tailwind class names look like states.** `disabled:bg-grey-200` made every Deublin and Posital control look disabled. Only whole class tokens count.
+22. **Throttled pages look like product pages.** After many visits Elesa serves its product pages without header or table, and Jev judged one a product page at 0.84. Code has no check for this yet.
+
 ## Open questions
 
 - **Hub pages that fail.** Balluff shows a Cloudflare check, Bosch Rexroth's products page is judged not a catalogue, and Testo's highlight tabs are judged categories.

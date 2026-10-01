@@ -13,7 +13,7 @@ const card = (code: string, range: string, extra: Partial<RawItem> = {}): RawIte
   ...extra,
 });
 const items = [card('A-1', '0..10 bar'), card('A-2', '0..16 bar'), card('A-3', '0..25 bar')];
-const pageItems = (its: RawItem[]): PageItems => ({ url: 'https://x.test/list', item_signature: 'DIV.card', container_signature: 'DIV.grid', containers: 1, items: its, count_texts: ['3 Filter', '1–3 of 1,204 results'] });
+const pageItems = (its: RawItem[]): PageItems => ({ url: 'https://x.test/list', item_signature: 'DIV.card', container_signature: 'DIV.grid', containers: 1, total_items: its.length, items: its, count_texts: ['3 Filter', '1–3 of 1,204 results'] });
 
 describe('alignSlots', () => {
   it('turns a constant followed by a varying value in the same parent into a label, but not a constant button', () => {

@@ -18,7 +18,11 @@
     items = [...document.querySelectorAll(tag)].filter((e) => signature(e) === itemSignature && e.parentElement && signature(e.parentElement) === containerSignature);
   }
   items = items.filter((e) => shown(e) && clean(e.innerText, 2).length >= 2);
-  items = items.filter((e) => !items.some((o) => o !== e && o.contains(e))).slice(0, MAX_ITEMS);
+  items = items.filter((e) => !items.some((o) => o !== e && o.contains(e)));
+  // Growing lists ("load more", infinite scroll): read only what was added after opts.from.
+  const totalItems = items.length;
+  const from = opts?.from ?? 0;
+  items = items.slice(from, from + MAX_ITEMS);
 
   // Column labels for table rows. DataTables keeps the header in a separate table next to the body.
   const headerCache = new Map();
@@ -172,7 +176,7 @@
   const counts = [];
   const seenCount = new Set();
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  for (let t = walker.nextNode(); t && counts.length < 15; t = walker.nextNode()) {
+  for (let t = opts?.skipCounts ? null : walker.nextNode(); t && counts.length < 15; t = walker.nextNode()) {
     let el = t.parentElement;
     if (!el || !/\d/.test(t.textContent) || el.closest('script,style,noscript,template,nav,footer,select,option')) continue;
     if (inItem(el)) continue;
@@ -199,6 +203,7 @@
     item_signature: itemSignature,
     container_signature: containerSignature,
     containers: new Set(items.map((i) => i.parentElement)).size,
+    total_items: totalItems,
     items: items.map(readItem),
     count_texts: counts,
   };

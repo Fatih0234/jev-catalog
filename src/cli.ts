@@ -4,13 +4,14 @@ import { recon } from './recon.js';
 
 const [command, url, outArg] = process.argv.slice(2);
 if (!['recon', 'crawl'].includes(command ?? '') || !url) {
-  console.error('usage: npm run recon -- <url> [out-dir]\n       npm run crawl -- <url> [out-dir] [maxPages]');
+  console.error('usage: npm run recon -- <url> [out-dir]\n       npm run crawl -- <url> [out-dir] [maxPages] [maxListPages]');
   process.exit(2);
 }
 if (command === 'crawl') {
   const out = outArg ?? `artifacts/crawl/${new URL(url).host}-${Date.now()}`;
   const maxPages = Number(process.argv[5] ?? 40);
-  const r = await crawl(url, createJudge(), { outDir: out, maxPages, log: (l) => console.log(l) });
+  const maxListPages = Number(process.argv[6] ?? 50);
+  const r = await crawl(url, createJudge(), { outDir: out, maxPages, maxListPages, log: (l) => console.log(l) });
   console.log(`\n${renderTree(r)}\nartifacts: ${out}`);
   process.exit(0);
 }

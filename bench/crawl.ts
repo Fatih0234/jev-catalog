@@ -1,5 +1,5 @@
 // Crawl several seeds with a small page budget and summarize where each branch ended.
-// usage: npx tsx bench/crawl.ts [maxPages] [seed-id]
+// usage: npx tsx bench/crawl.ts [maxPages] [seed-id] [maxListPages=5]
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { crawl, renderTree } from '../src/crawl.js';
 import { createJudge } from '../src/jev.js';
@@ -14,13 +14,14 @@ const SEEDS: { id: string; url: string; expect: string }[] = [
 ];
 const maxPages = Number(process.argv[2] ?? 15);
 const only = process.argv[3];
+const maxListPages = Number(process.argv[4] ?? 5);
 const runDir = `artifacts/crawl-bench/${new Date().toISOString().replace(/[:.]/g, '-')}`;
 mkdirSync(runDir, { recursive: true });
 const rows: string[] = [];
 for (const seed of SEEDS.filter((s) => !only || s.id === only)) {
   const judge = createJudge();
   try {
-    const r = await crawl(seed.url, judge, { maxPages, outDir: `${runDir}/${seed.id}`, log: (l) => console.log(`[${seed.id}] ${l}`) });
+    const r = await crawl(seed.url, judge, { maxPages, maxListPages, outDir: `${runDir}/${seed.id}`, log: (l) => console.log(`[${seed.id}] ${l}`) });
     rows.push(`| ${seed.id} | ${r.nodes.length} | ${r.leaf_lists.length} | ${r.product_pages.length} | ${r.configurable_families.length} | ${r.series_pages.length} | ${r.needs_input.length} | ${r.stopped.length} | ${r.unvisited} | ${r.rows_extracted} | ${r.jev_calls} | ${Math.round(r.elapsed_ms / 1000)} s | ${seed.expect} |`);
     writeFileSync(`${runDir}/${seed.id}.md`, renderTree(r));
   } catch (e) {
