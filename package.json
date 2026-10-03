@@ -9,7 +9,8 @@
     "recon": "tsx src/cli.ts recon",
     "shoot": "tsx bench/shoot.ts",
     "bench:recon": "tsx bench/recon.ts",
-    "crawl": "tsx src/cli.ts crawl"
+    "crawl": "tsx src/cli.ts crawl",
+    "details": "tsx src/cli.ts details"
   },
   "license": "UNLICENSED",
   "type": "module",

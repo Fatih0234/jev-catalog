@@ -6,7 +6,19 @@ TypeSafe's Jev model makes the decisions. Code does the reading, clicking and co
 
 ## Status
 
-Stages 1 to 4 work. Stage 1 opens a page, answers blocking prompts and decides what to do with it. Stage 2 crawls from a seed until every branch ends in a product list, a product page, a configurable family, a series page or a finder that needs input. Stage 3 turns each product list into rows with named fields, an identity and the advertised total. Stage 4 pages through each list by URL, next button, load more, numbered pages or scrolling, and reports completeness against the advertised total. See `docs/plan.md` and `docs/findings.md`.
+Stages 1 to 4 work. Stage 1 opens a page, answers blocking prompts and decides what to do with it. Stage 2 crawls from a seed until every branch ends in a product list, a product page, a configurable family, a series page or a finder that needs input. Stage 3 turns each product list into rows with named fields, an identity and the advertised total. Stage 4 pages through each list by URL, next button, load more, numbered pages or scrolling, and reports completeness against the advertised total.
+
+## Docs
+
+| File | For |
+| --- | --- |
+| `docs/handoff.md` | Current state, repository state, decisions so far and what to do next |
+| `docs/plan.md` | The stages, the definitions agreed with the user, and known gaps |
+| `docs/findings.md` | Where each stage stands, and the lessons in one line each |
+| `docs/experiments/` | One write-up per stage: question, setup, numbers over time, failures, decisions, how to reproduce |
+| `docs/jev-patterns.md` | How to design Jev questions, with the experiment behind each pattern |
+| `docs/site-notes.md` | Quirks of each tested catalogue and how the code handles them |
+| `docs/typesafe-jev.md` | Where TypeSafe's docs live and what matters here |
 
 ## Run
 

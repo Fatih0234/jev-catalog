@@ -1,0 +1,39 @@
+{
+  "purpose": "Fresh detail replay after the identity repair. Keep the original three teaching targets and use the first five primary products from the independently captured second listing pages.",
+  "selected_from": "artifacts/heldout-recipe-evidence-2026-10-03/expectations-v2.json",
+  "selection_rule": "Reuse the original three teaching products per site. The first five primary URLs on the captured second listing page are new detail test targets. No listing or pagination evaluation is planned in this run.",
+  "sites": [
+    {
+      "id": "leuze-fiber-optics",
+      "listing_url": "https://www.leuze.com/en-us/products/switching-sensors/fiber-optic-sensors/fiber-optics",
+      "teach": [
+        { "url": "https://www.leuze.com/en-us/gf-etb-ss-630-sm/50153815", "expected_code": "50153815" },
+        { "url": "https://www.leuze.com/en-us/gf-etb-ss-610-sm/50153814", "expected_code": "50153814" },
+        { "url": "https://www.leuze.com/en-us/gf-etb-ss-605-sm/50153813", "expected_code": "50153813" }
+      ],
+      "test": [
+        { "url": "https://www.leuze.com/en-us/gf-lb-ss-830-sf/50142352", "expected_code": "50142352" },
+        { "url": "https://www.leuze.com/en-us/gf-lb-ss-840-sf/50142351", "expected_code": "50142351" },
+        { "url": "https://www.leuze.com/en-us/kf-l-450/50141663", "expected_code": "50141663" },
+        { "url": "https://www.leuze.com/en-us/kfx-l-10mld-20/50141253", "expected_code": "50141253" },
+        { "url": "https://www.leuze.com/en-us/kf-etw-fu44-20/50138102", "expected_code": "50138102" }
+      ]
+    },
+    {
+      "id": "schmalz-spf",
+      "listing_url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419",
+      "teach": [
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.13237", "expected_code": "10.01.01.13237" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.13254", "expected_code": "10.01.01.13254" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.13238", "expected_code": "10.01.01.13238" }
+      ],
+      "test": [
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.14915", "expected_code": "10.01.01.14915" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.14919", "expected_code": "10.01.01.14919" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.14906", "expected_code": "10.01.01.14906" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.14917", "expected_code": "10.01.01.14917" },
+        { "url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419/10.01.01.13242", "expected_code": "10.01.01.13242" }
+      ]
+    }
+  ]
+}

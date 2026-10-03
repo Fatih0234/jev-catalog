@@ -1,0 +1,140 @@
+{
+  "description": "Discovery baseline on new manufacturers, with navigation and negative controls. This does not score extraction or robot replay.",
+  "provenance": "Selected from first-party pages on 2026-10-01. The lead reviewed Jev-free browser screenshots, snapshots and raw state before any Jev evaluation. Manufacturers are absent from the existing finder and hub suites. Labels describe the captured main content, not search excerpts.",
+  "evidence_dir": "artifacts/heldout-finder-scout-2026-10-01",
+  "implementation_baseline": "artifacts/heldout-finder-baseline-2026-10-01.json",
+  "sites": [
+    {
+      "id": "leuze-fiber-optics",
+      "company": "Leuze",
+      "url": "https://www.leuze.com/en-us/products/switching-sensors/fiber-optic-sensors/fiber-optics",
+      "cohort": "listing",
+      "expected_next": "extract",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "cards_with_companion_products",
+        "pagination": "numbered",
+        "visible_total": "Results list: 100 products found",
+        "language": "en",
+        "rationale": "The article list contains individually identified fiber optics. Subcategory tiles and companion amplifiers must not replace it as the main list.",
+        "capture_note": "The scout overwrote its first headless access-denial capture during a headed retry. Only the successful headed capture is retained."
+      }
+    },
+    {
+      "id": "schmalz-spf",
+      "company": "Schmalz",
+      "url": "https://www.schmalz.com/en-us/products/vacuum-technology-for-automation-301607/vacuum-components-301608/vacuum-suction-cups-301609/suction-cups-for-the-packaging-industry-304415/flat-suction-cups-spf-304419",
+      "observed_final_url": "https://www.schmalz.com/en-us/products/automation-743270/vacuum-grippers-746238/vacuum-suction-cups-301609/flat-suction-cups-round-301610/flat-suction-cups-spf-304419",
+      "cohort": "listing",
+      "expected_next": "extract",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": ["product_detail"],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "series_overview_with_variant_cards",
+        "pagination": "numbered",
+        "visible_total": "1 - 10 from 38 results",
+        "language": "en",
+        "rationale": "The page describes the SPF series and lists exact variants with separate part numbers. Either listing or series-detail page kind is defensible, but the next action must extract the variants.",
+        "capture_note": "The seed redirects to the recorded canonical path. Prices require login; public product identities do not."
+      }
+    },
+    {
+      "id": "banner-qs18",
+      "company": "Banner Engineering",
+      "url": "https://www.bannerengineering.com/us/en/products/sensors/photoelectric-sensors/qs18-series.html",
+      "cohort": "listing",
+      "expected_next": "extract",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": ["product_detail"],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "series_overview_with_parametric_table",
+        "pagination": "load_more",
+        "visible_total": "Results 1-30 of 457",
+        "language": "en",
+        "rationale": "The series description precedes a product-selection table of exact models and part numbers. Either listing or series-detail page kind is defensible, but those rows are products.",
+        "capture_note": "The final scout capture still shows Data Usage Settings with Decline and Accept. Gate clearance is not established."
+      }
+    },
+    {
+      "id": "baumer-inductive",
+      "company": "Baumer",
+      "url": "https://www.baumer.com/lu/en/product-overview/object-detection/inductive-proximity-switches/c/278",
+      "cohort": "navigation",
+      "expected_next": "expand_items",
+      "label": {
+        "page_kind": "category_hub",
+        "acceptable_alternates": ["family_listing"],
+        "main_items": "product_category",
+        "acceptable_items": ["product_family"],
+        "archetype": "portfolio_cards_linking_to_selectors",
+        "pagination": "none",
+        "visible_total": null,
+        "language": "en",
+        "rationale": "The portfolio groups miniature, standard cylindrical, factor-1, sturdy and hygienic sensors, with named AlphaProx families also present. These are groupings with selector links, not individual article rows."
+      }
+    },
+    {
+      "id": "omron-selection-tool",
+      "company": "Omron",
+      "url": "https://automation.omron.com/en/us/support/product-selection-tool",
+      "cohort": "negative",
+      "expected_next": "stop",
+      "label": {
+        "page_kind": "not_catalogue",
+        "acceptable_alternates": [],
+        "main_items": "none",
+        "acceptable_items": [],
+        "archetype": "tool_registration_landing_page",
+        "pagination": "none",
+        "visible_total": null,
+        "language": "en",
+        "rationale": "This support page describes ONSeT, links to ONSeT Login and gives registration instructions. It contains no product list or embedded product-selection form. Document guides and navigation are not products.",
+        "capture_note": "The observed ONSeT Login target is https://omronsolutions.com/. It was not visited and no account was created."
+      }
+    },
+    {
+      "id": "baumer-selector",
+      "company": "Baumer",
+      "url": "https://www.baumer.com/lu/en/product-overview/object-detection/inductive-proximity-switches/c/278/products",
+      "cohort": "listing",
+      "expected_next": "extract",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "parametric_table",
+        "pagination": "load_more",
+        "visible_total": "694 products",
+        "language": "en",
+        "rationale": "The selector contains named sensor models with exact article numbers and technical columns. Show more products is a loading control, not a product.",
+        "capture_note": "This URL was copied from the initial Baumer page's Open in product selector link and independently captured before Jev. It supplements rather than replaces the navigation case."
+      }
+    },
+    {
+      "id": "turck-inductive",
+      "company": "Turck",
+      "url": "https://www.turck.ca/en/productgroup/Sensors/Inductive%20Sensors",
+      "cohort": "listing",
+      "expected_next": "extract",
+      "label": {
+        "page_kind": "product_listing",
+        "acceptable_alternates": [],
+        "main_items": "individual_product",
+        "acceptable_items": [],
+        "archetype": "filterable_product_cards",
+        "pagination": "numbered",
+        "visible_total": "Search results: 3096; Page 1 of 310",
+        "language": "en",
+        "rationale": "The main Products region lists individually identified sensors with distinct Type, ID and Details links. Filter options and the product-search sidebar are not the product list."
+      }
+    }
+  ]
+}

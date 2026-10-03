@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Read README.md and docs/plan.md before editing.
+Read docs/handoff.md, README.md and docs/plan.md before editing. Before changing a stage, read its write-up in `docs/experiments/`. Before writing or changing a Jev question, read `docs/jev-patterns.md`. When a site misbehaves, check `docs/site-notes.md`.
 
 ## TypeSafe Jev
 
@@ -21,3 +21,4 @@ Load the `typesafe-ai` skill in `.agents/skills/typesafe-ai/` for any Jev work, 
 - Test decision logic with fake answers, and test the snapshot script against local HTML in Playwright.
 - Judge a change to prompts or pipeline by the bench: `npx tsx bench/recon.ts finders`. Report the before and after numbers. A bench run costs about $0.01.
 - Bench labels come from Jev-free screenshots. Do not relabel a site after seeing Jev's answer for it.
+- After an experiment, record it in `docs/experiments/` as described in its README, and add site quirks to `docs/site-notes.md`.
